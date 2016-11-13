@@ -1,7 +1,9 @@
 ---
+# hostname
 hostname: bootstrap
 fqdn: boostrap.raspberry.pi
 
+# dhcpcd
 network_interfaces:
   eth0:
     static: False

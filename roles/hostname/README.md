@@ -1,4 +1,4 @@
-Hostname
+hostname
 =========
 
 Configures the hostname
