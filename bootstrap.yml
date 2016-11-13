@@ -1,0 +1,6 @@
+---
+- hosts: bootstrap
+  become: yes
+  roles:
+    - hostname
+    - dhcpcd

@@ -1,0 +1,23 @@
+controlgroup wheel
+hostname
+duid
+persistent
+option rapid_commit
+option domain_name_servers, domain_name, domain_search, host_name
+option classless_static_routes
+option ntp_servers
+option interface_mtu
+require dhcp_server_identifier
+slaac private
+{% for key, value in network_interfaces.iteritems() %}
+
+interface {{ key }}
+{% if value.static %}
+nodhcp
+static ip_address={{ value.ip_address }}
+static routers={{ value.routers }}
+static domain_name_servers={{ value.domain_name_servers | join(' ') }} 
+{% else %}
+dhcp
+{% endif %}
+{% endfor %}

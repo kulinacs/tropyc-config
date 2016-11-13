@@ -1,0 +1,3 @@
+---
+- name: hostname
+  command: hostname {{ hostname }}

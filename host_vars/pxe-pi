@@ -1,0 +1,14 @@
+---
+hostname: bootstrap
+fqdn: boostrap.raspberry.pi
+
+network_interfaces:
+  eth0:
+    static: False
+  eth1:
+    static: True
+    ip_address: 192.168.73.1
+    routers: 192.168.73.1
+    domain_name_servers:
+      - 8.8.8.8
+      - 8.8.4.4

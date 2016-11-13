@@ -1,0 +1,6 @@
+---
+- name: Configure dhcpd
+  template: src=dhcpcd.conf.j2 dest=/etc/dhcpcd.conf owner=root group=root mode=0644
+  notify:
+    - dhcpcd
+  tags: dhcpcd
