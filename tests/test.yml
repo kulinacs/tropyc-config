@@ -1,6 +1,6 @@
 ---
-- hosts: bootstrap
-  become: true
+- hosts: localhost
+  remote_user: root
   roles:
     - hostname
     - dhcpcd

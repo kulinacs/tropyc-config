@@ -6,9 +6,9 @@ fqdn: boostrap.raspberry.pi
 # dhcpcd
 network_interfaces:
   eth0:
-    static: False
+    static: false
   eth1:
-    static: True
+    static: true
     ip_address: 192.168.73.1
     routers: 192.168.73.1
     domain_name_servers:
