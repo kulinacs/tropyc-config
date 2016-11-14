@@ -1,0 +1,12 @@
+galaxy_info:
+  author: kulinacs
+  description: Sets the hostname
+  license: ISC
+  min_ansible_version: 1.2
+  platforms:
+    - name: Void Linux
+      versions:
+        - any
+  galaxy_tags:
+    - hostname
+dependencies: []
