@@ -1,0 +1,9 @@
+---
+- name: Adding User "{{ item.key }}"
+  user:
+    name: "{{ item.key }}"
+    password: "{{ item.value.password | default(omit) }}"
+    group: "{{ item.value.group | default(omit) }}"
+    groups: "{{ (item.value.groups | join(',')) | default(omit) }}"
+    append: "{{ item.value.append  | default(omit) }}"
+  with_dict: "{{ users }}"
