@@ -2,6 +2,6 @@
 ::1				localhost.localdomain		localhost ip6-localhost
 {% if fqdn is defined %}
 127.0.1.1		{{ fqdn }}		{{ hostname }}
-{% else $}
+{% else %}
 127.0.1.1		{{ hostname }}
 {% endif %}
