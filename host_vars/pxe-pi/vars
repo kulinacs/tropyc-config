@@ -15,10 +15,11 @@ network_interfaces:
       - 8.8.8.8
       - 8.8.4.4
 
-# users
+# addusers
 users:
   kulinacs:
-    groups:
-      - wheel
-    password: {{ vault_users.kulinacs.password }}
-    
+    groups: wheel
+    password: "{{ vault_users.kulinacs.password }}"
+    pub_key: "{{ lookup('file', 'keys/kulinacs/id_personal.pub') }}"
+  root:
+    password: "{{ vault_users.root.password }}"

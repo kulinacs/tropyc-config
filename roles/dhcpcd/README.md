@@ -13,8 +13,8 @@ Role Variables
 
 Required:
 
-	network_interfaces: a hash of hashed describing each network interface
-	  <interface_name1>: 
+	network_interfaces: a hash of hashes describing each network interface
+	  <interface_name>: 
 	    static: True/False
         (If Static)
 		ip_address: Interface IP

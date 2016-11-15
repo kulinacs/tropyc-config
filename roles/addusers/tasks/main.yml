@@ -1,9 +1,22 @@
 ---
-- name: Adding User "{{ item.key }}"
+- name: Adding users
   user:
     name: "{{ item.key }}"
     password: "{{ item.value.password | default(omit) }}"
     group: "{{ item.value.group | default(omit) }}"
-    groups: "{{ (item.value.groups | join(',')) | default(omit) }}"
+    groups: "{{ item.value.groups | default(omit) }}"
     append: "{{ item.value.append  | default(omit) }}"
   with_dict: "{{ users }}"
+  no_log: true
+  tags:
+    - addusers
+    - vault
+
+- name: Adding ssh keys
+  authorized_key:
+    user: "{{ item.key }}"
+    key: "{{ item.value.pub_key }}"
+  when: "{{ item.value.pub_key is defined }}"
+  with_dict: "{{ users }}"
+  no_log: true
+  tags: addusers
