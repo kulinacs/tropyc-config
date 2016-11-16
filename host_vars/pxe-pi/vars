@@ -23,3 +23,9 @@ users:
     pub_key: "{{ lookup('file', 'keys/kulinacs/id_personal.pub') }}"
   root:
     password: "{{ vault_users.root.password }}"
+
+# iptables
+iptables_input_policy: DROP
+iptables_output_policy: DROP
+iptables_ssh_allowed: true
+iptables_dns_allowed: true

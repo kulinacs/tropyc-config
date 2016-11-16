@@ -1,5 +1,5 @@
 ---
-- name: Adding users
+- name: Add users
   user:
     name: "{{ item.key }}"
     password: "{{ item.value.password | default(omit) }}"
@@ -12,7 +12,7 @@
     - addusers
     - vault
 
-- name: Adding ssh keys
+- name: Add ssh keys
   authorized_key:
     user: "{{ item.key }}"
     key: "{{ item.value.pub_key }}"

@@ -1,3 +1,4 @@
+---
 galaxy_info:
   author: kulinacs
   description: Sets the hostname
@@ -9,4 +10,5 @@ galaxy_info:
         - any
   galaxy_tags:
     - hostname
-dependencies: []
+dependencies:
+  - dhcpcd
