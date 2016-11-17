@@ -1,7 +1,8 @@
-Hostname
-=========
+iptables
+========
 
-Configures the hostname
+Configures a iptables rules for services considered required functionality,
+ssh, DNS, and access to a package repository.
 
 Requirements
 ------------
@@ -13,16 +14,17 @@ Role Variables
 
 Required:
 
-	hostname: the desired hostname of the machine
+	iptables_dns_allow: if outbound DNS traffic is allowed
+	iptables_ssh_allow: if outbound and inbound SSH traffic is allowed
 
 Optional:
 	
-	fqdn: the desired fqdn of the machine
+	xbps_repo: the xbps repository url to use (defaults to https://repo.voidlinux.eu/current)
 
 Dependencies
 ------------
 
-No dependencies
+kulinacs.dhcpcd
 
 Example Playbook
 ----------------
@@ -30,15 +32,15 @@ Example Playbook
     - hosts: servers
       roles:
          - { 
-		 role: kulinacs.hostname,
-		 hostname: localhost,
-		 fqdn: localhost.localdomain
+		 role: kulinacs.iptables,
+		 iptables_dns_allow: true,
+		 iptables_ssh_allow: true
 		 }
 
 License
 -------
 
-ISC
+MIT
 
 Author Information
 ------------------

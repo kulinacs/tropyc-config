@@ -1,14 +1,14 @@
 ---
 galaxy_info:
   author: kulinacs
-  description: Sets the hostname
-  license: ISC
-  min_ansible_version: 1.2
+  description: Configures iptables
+  license: MIT
+  min_ansible_version: 2.0
   platforms:
     - name: Void Linux
       versions:
         - any
   galaxy_tags:
-    - hostname
+    - iptables
 dependencies:
   - dhcpcd
