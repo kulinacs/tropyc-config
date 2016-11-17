@@ -1,0 +1,38 @@
+---
+- name: Configure primary repository (1/2)
+  set_fact: xbps_repository="{{ xbps_repo }}"
+  tags: xbps
+
+- name: Configure primary repository (2/2)
+  template: src=repository.conf dest=/etc/xbps.d/00-repository-main.conf owner=root group=root mode=0644
+  tags: xbps
+
+- name: Configure multilib repository (1/2)
+  set_fact: xbps_repository="{{ xbps_repo }}/multilib"
+  when: xbps_repo_options is defined and "multilib" in xbps_repo_options
+  tags: xbps
+
+- name: Configure multilib repository (2/2)
+  template: src=repository.conf dest=/etc/xbps.d/10-repository-multilib.conf owner=root group=root mode=0644
+  when: xbps_repo_options is defined and "multilib" in xbps_repo_options
+  tags: xbps
+
+- name: Configure nonfree repository (1/2)
+  set_fact: xbps_repository="{{ xbps_repo }}/nonfree"
+  when: xbps_repo_options is defined and "nonfree" in xbps_repo_options
+  tags: xbps
+
+- name: Configure nonfree repository (2/2)
+  template: src=repository.conf dest=/etc/xbps.d/20-repository-nonfree.conf owner=root group=root mode=0644
+  when: xbps_repo_options is defined and "nonfree" in xbps_repo_options
+  tags: xbps
+
+- name: Configure multilib nonfree repository (1/2)
+  set_fact: xbps_repository="{{ xbps_repo }}/multilib/nonfree"
+  when: xbps_repo_options is defined and "multilib-nonfree" in xbps_repo_options
+  tags: xbps
+
+- name: Configure multilib nonfree repository (2/2)
+  template: src=repository.conf dest=/etc/xbps.d/30-repository-multilib-nonfree.conf owner=root group=root mode=0644
+  when: xbps_repo_options is defined and "multilib-nonfree" in xbps_repo_options
+  tags: xbps

@@ -1,0 +1,13 @@
+---
+galaxy_info:
+  author: kulinacs
+  description: Configures XBPS repositories
+  license: ISC
+  min_ansible_version: 1.2
+  platforms:
+    - name: Void Linux
+      versions:
+        - any
+  galaxy_tags:
+    - xbps
+dependencies: []
