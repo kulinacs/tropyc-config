@@ -12,6 +12,7 @@ PubKeyAuthentication {{ sshd_key_auth }}
 
 ## Features
 X11Forwarding {{ sshd_x11_forwarding }}
+Subsystem       sftp    /usr/libexec/sftp-server
 
 ## Crypto Preferences
 # Avoids RC4 and DES, prefers larger key and block sizes, and prefers Chacha20 since it encrypts packet lengths
