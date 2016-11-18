@@ -1,0 +1,22 @@
+Port {{ sshd_port }}
+
+## Server Host Keys
+{% for type in sshd_host_keys %}
+HostKey /etc/ssh/ssh_host_{{ type }}_key
+{% endfor %}
+
+## Authentication
+PermitRootLogin {{ sshd_root_login }}
+PasswordAuthentication {{ sshd_pass_auth }}
+PubKeyAuthentication {{ sshd_key_auth }}
+
+## Features
+X11Forwarding {{ sshd_x11_forwarding }}
+
+## Crypto Preferences
+# Avoids RC4 and DES, prefers larger key and block sizes, and prefers Chacha20 since it encrypts packet lengths
+Ciphers chacha20-poly1305@openssh.com,aes256-gcm@openssh.com,aes128-gcm@openssh.com,aes256-ctr,aes192-ctr,aes128-ctr
+# Avoid NIST curves and SHA1
+KexAlgorithms curve25519-sha256@libssh.org,diffie-hellman-group-exchange-sha256
+# Avoids MD5 and SHA1, and prefers tag and key size 128 bits and larger
+MACs hmac-sha2-512-etm@openssh.com,hmac-sha2-256-etm@openssh.com,hmac-ripemd160-etm@openssh.com,umac-128-etm@openssh.com,hmac-sha2-512,hmac-sha2-256,hmac-ripemd160,umac-128@openssh.com

@@ -34,3 +34,11 @@ iptables_dns_allowed: true
 xbps_repo: https://lug.utdallas.edu/mirror/void/current
 xbps_repo_options:
   - nonfree
+
+# sshd
+sshd_root_login: "no"
+sshd_pass_auth: "no"
+sshd_key_auth: "yes"
+sshd_host_keys:
+  - ed25519
+  - rsa

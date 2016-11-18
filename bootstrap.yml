@@ -7,3 +7,4 @@
     - addusers
     - iptables
     - xbps
+    - sshd
