@@ -1,0 +1,4 @@
+---
+- name: Include {{ sudoers_group }} in sudoers.d
+  template: src=sudoers.j2 dest=/etc/sudoers.d/{{ sudoers_group }} owner=root group=root mode=0440 validate='visudo -cf %s'
+  tags: sudoers

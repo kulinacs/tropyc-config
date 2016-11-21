@@ -1,14 +1,16 @@
 ---
 # hostname
-hostname: bootstrap
-fqdn: boostrap.raspberry.pi
+hostname: rpi
+domain: bootstrap.network
 
 # dhcpcd
 network_interfaces:
   eth0:
     static: false
+    external: true
   eth1:
     static: true
+    external: false
     ip_address: 192.168.73.1
     routers: 192.168.73.1
     domain_name_servers:
@@ -23,6 +25,9 @@ users:
     pub_key: "{{ lookup('file', 'keys/kulinacs/id_personal.pub') }}"
   root:
     password: "{{ vault_users.root.password }}"
+
+# sudoers
+sudoers_group: wheel
 
 # iptables
 iptables_input_policy: DROP

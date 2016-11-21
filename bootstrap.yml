@@ -5,6 +5,8 @@
     - hostname
     - dhcpcd
     - addusers
+    - sudoers
     - iptables
     - xbps
     - sshd
+    - gateway

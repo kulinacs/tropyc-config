@@ -1,7 +1,7 @@
 127.0.0.1		localhost.localdomain		localhost
 ::1				localhost.localdomain		localhost ip6-localhost
-{% if fqdn is defined %}
-127.0.1.1		{{ fqdn }}		{{ hostname }}
+{% if domain is defined %}
+127.0.1.1		{{ hostname }}.{{ domain }}		{{ hostname }}
 {% else %}
 127.0.1.1		{{ hostname }}
 {% endif %}
