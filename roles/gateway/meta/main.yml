@@ -1,0 +1,14 @@
+---
+galaxy_info:
+  author: kulinacs
+  description: Configures traffic forwarding
+  license: ISC
+  min_ansible_version: 1.2
+  platforms:
+    - name: Void Linux
+      versions:
+        - any
+  galaxy_tags:
+    - gateway
+dependencies:
+  - iptables

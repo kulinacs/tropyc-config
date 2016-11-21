@@ -1,0 +1,12 @@
+---
+- name: Enable ipv4 forwarding
+  copy: src=gateway.conf dest=/usr/lib/sysctl.d/gateway.conf owner=root group=root mode=0644
+  notify:
+    - sysctl
+  tags: gateway
+
+- name: Install gateway firewall rules
+  template: src=gateway.rules.j2 dest=/etc/iptables.d/gateway.rules owner=root group=root mode=0644
+  notify:
+    - iptables
+  tags: gateway
