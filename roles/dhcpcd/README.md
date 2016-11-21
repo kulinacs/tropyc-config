@@ -15,14 +15,12 @@ Required:
 
 	network_interfaces: a hash of hashes describing each network interface
 	  <interface_name>: 
-	    static: True/False
-        (If Static)
+	    static: true/talse
+        (if static)
 		ip_address: Interface IP
         routers: Gateway IP
         domain_name_servers:
 		  - List of DNS Servers
-
-
 
 Dependencies
 ------------
@@ -38,9 +36,9 @@ Example Playbook
 		 role: kulinacs.dhcpcd,
 		 network_interfaces:
 	       eth0:
-             static: False
+             static: false
            eth1:
-             static: True
+             static: true
              ip_address: 192.168.73.37
              routers: 192.168.73.1
              domain_name_servers:
