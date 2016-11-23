@@ -1,7 +1,7 @@
 dhcpd
 =====
 
-Configures dhcpd
+Configures dhcpd (currently only supports serving on a single interface)
 
 Requirements
 ------------
