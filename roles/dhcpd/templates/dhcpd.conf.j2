@@ -1,0 +1,31 @@
+authoritative;
+{% for key, value in network_interfaces.iteritems() %}
+{% if value.subnets is defined %}
+{% for subnet_key, subnet_value in value.subnets.iteritems() %}
+
+subnet {{ subnet_value.network }} netmask {{ subnet_value.netmask }} {
+	range {{ subnet_value.range_min }} {{ subnet_value.range_max }};
+	default-lease-time 3600;
+	max-lease-time 7200;
+{% if subnet_value.routers is defined %}
+	option routers {{ subnet_value.routers }};
+{% endif %}
+{% if subnet_value.domain_name is defined %}
+	option domain-name "{{ subnet_value.domain_name }}";
+{% endif %}
+{% if subnet_value.dns_servers is defined %}
+	option domain-name-servers {{ subnet_value.dns_servers }};
+{% endif %}
+{% if subnet_value.ntp_servers is defined %}
+	option ntp-servers {{ subnet_value.ntp_servers }};
+{% endif %}
+{% if subnet_value.filename is defined %}
+	filename "{{ subnet_value.filename }}";
+{% endif %}
+{% if subnet_value.next_server is defined %}
+	next-server {{ subnet_value.next_server }};
+{% endif %}
+}
+{% endfor %}
+{% endif %}
+{% endfor %}

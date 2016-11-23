@@ -1,0 +1,3 @@
+---
+- name: dhcpd4
+  command: sv restart dhcpd4

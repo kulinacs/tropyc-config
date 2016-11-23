@@ -1,0 +1,7 @@
+{% set dhcpd_interfaces = '' %}
+{% for key, value in network_interfaces.iteritems() %}
+{% if value.subnets is defined %}
+{% set dhcpd_interfaces = dhcpd_interfaces + ' ' + key %}
+{% endif %}
+{% endfor %}
+INTERFACES="{{ dhcpd_interfaces }}"

@@ -1,0 +1,21 @@
+---
+- name: Install dhcp
+  xbps: pkg=dhcp state=present
+
+- name: Configure dhcpd
+  template: src=dhcpd.conf.j2 dest=/etc/dhcpd.conf owner=root group=root mode=0644
+  notify:
+    - dhcpd4
+
+- name: Configure dhcpd4 interface
+  template: src=interface_conf.j2 dest=/etc/sv/dhcpd4/conf owner=root group=root mode=0644
+  notify:
+    - dhcpd4
+
+- name: Install dhcpd firewall rules
+  template: src=dhcpd.rules.j2 dest=/etc/iptables.d owner=root group=root mode=0644
+  notify:
+    - iptables
+
+- name: Enable dhcpd4 on startup
+  file: src=/etc/sv/dhcpd4 dest=/var/service/dhcpd4 state=link
