@@ -20,6 +20,7 @@
 
 - name: Install openntpd rules
   template: src=ntpd.rules.j2 dest=/etc/iptables.d/ntpd.rules owner=root group=root mode=0644
+  when: iptables_d_present.stat.exists == True
   notify:
     - iptables
   tags:
@@ -28,6 +29,4 @@
 
 - name: Enable openntpd at startup
   file: src=/etc/sv/ntpd dest=/var/service/ntpd state=link
-  notify:
-    - ntpd
   tags: openntpd

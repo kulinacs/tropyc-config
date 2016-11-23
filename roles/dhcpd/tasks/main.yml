@@ -15,8 +15,14 @@
     - dhcpd4
   tags: dhcpd
 
+- name: Check for presence of iptables.d
+  stat: path=/etc/iptables.d
+  register: iptables_d_present
+  tags: iptables
+
 - name: Install dhcpd firewall rules
   template: src=dhcpd.rules.j2 dest=/etc/iptables.d owner=root group=root mode=0644
+  when: iptables_d_present.stat.exists == True
   notify:
     - iptables
   tags:
