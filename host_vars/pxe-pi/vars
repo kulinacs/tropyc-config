@@ -1,9 +1,11 @@
 ---
-# hostname
 hostname: rpi
-domain: bootstrap.network
+domain: .bootstrap
 
-# dhcpcd
+ntp_server: true
+ntp_servers:
+  - pool.ntp.org
+
 network_interfaces:
   eth0:
     static: false
@@ -16,8 +18,17 @@ network_interfaces:
     domain_name_servers:
       - 8.8.8.8
       - 8.8.4.4
+    subnets:
+      192-168-73-0:
+        network: 192.168.73.0
+        netmask: 255.255.255.0
+        range_min: 192.168.73.100
+        range_max: 192.168.73.199
+        routers: 192.168.73.1
+        domain_name: .bootstrap
+        dns_servers: 8.8.8.8
+        ntp_servers: 192.168.73.1
 
-# addusers
 users:
   kulinacs:
     groups: wheel
@@ -26,21 +37,17 @@ users:
   root:
     password: "{{ vault_users.root.password }}"
 
-# sudoers
 sudoers_group: wheel
 
-# iptables
 iptables_input_policy: DROP
 iptables_output_policy: DROP
 iptables_ssh_allowed: true
 iptables_dns_allowed: true
 
-# xbps
 xbps_repo: https://lug.utdallas.edu/mirror/void/current
 xbps_repo_options:
   - nonfree
 
-# sshd
 sshd_root_login: "no"
 sshd_pass_auth: "no"
 sshd_key_auth: "yes"

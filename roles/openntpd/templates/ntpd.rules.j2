@@ -1,0 +1,11 @@
+*filter
+
+{% if ntp_server %}
+-A INPUT -p udp --dport 123 -j ACCEPT
+{% endif %}
+
+{% for ntp_serve in ntp_servers %}
+-A OUTPUT -p udp -d {{ ntp_serve }} --dport 123 -j ACCEPT
+{% endfor %}
+
+COMMIT

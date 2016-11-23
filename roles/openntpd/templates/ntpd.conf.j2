@@ -1,0 +1,9 @@
+# Allow server functionality
+{% if ntp_server %}
+listen on *
+{% endif %}
+
+# Servers
+{% for ntp_serve in ntp_servers %}
+servers {{ ntp_serve }}
+{% endfor %}
