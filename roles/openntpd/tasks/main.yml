@@ -1,12 +1,9 @@
 ---
-- name: Remove other implementations of ntp
-  xbps: pkg={{ item }} state=absent
-  with_items:
-    - ntp
-    - chrony
-
 - name: Install openntpd
   xbps: pkg=openntpd state=present
+
+- name: Set openntpd as default
+  command: xbps-alternatives -s openntpd
 
 - name: Configure openntpd
   template: src=ntpd.conf.j2 dest=/etc/ntpd.conf owner=root group=root mode=0644 validate="ntpd -nf %s"
