@@ -1,25 +1,33 @@
 ---
 - name: Install openntpd
   xbps: pkg=openntpd state=present
+  tags: openntpd
 
 - name: Set openntpd as default
   command: xbps-alternatives -s openntpd
+  tags: openntpd
 
 - name: Configure openntpd
   template: src=ntpd.conf.j2 dest=/etc/ntpd.conf owner=root group=root mode=0644 validate="ntpd -nf %s"
   notify:
     - ntpd
+  tags: openntpd
 
 - name: Check for presence of iptables.d
   stat: path=/etc/iptables.d
   register: iptables_d_present
+  tags: iptables
 
 - name: Install openntpd rules
   template: src=ntpd.rules.j2 dest=/etc/iptables.d/ntpd.rules owner=root group=root mode=0644
   notify:
+    - iptables
+  tags:
+    - openntpd
     - iptables
 
 - name: Enable openntpd at startup
   file: src=/etc/sv/ntpd dest=/var/service/ntpd state=link
   notify:
     - ntpd
+  tags: openntpd
