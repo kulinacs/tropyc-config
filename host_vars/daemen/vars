@@ -1,0 +1,38 @@
+---
+hostname: daemen
+domain: kulinacs.com
+
+ntp_server: false
+ntp_servers:
+  - pool.ntp.org
+
+network_interfaces:
+  eth0:
+    static: false
+    external: true
+
+users:
+  kulinacs:
+    groups: wheel
+    password: "{{ vault_users.kulinacs.password }}"
+    pub_key: "{{ lookup('file', 'keys/kulinacs/id_personal.pub') }}"
+  root:
+    password: "{{ vault_users.root.password }}"
+
+sudoers_group: wheel
+
+iptables_input_policy: DROP
+iptables_output_policy: DROP
+iptables_ssh_allowed: true
+iptables_dns_allowed: true
+
+xbps_repo: https://lug.utdallas.edu/mirror/void/current
+xbps_repo_options:
+  - nonfree
+
+sshd_root_login: "no"
+sshd_pass_auth: "no"
+sshd_key_auth: "yes"
+sshd_host_keys:
+  - ed25519
+  - rsa
