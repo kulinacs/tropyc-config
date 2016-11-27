@@ -1,0 +1,31 @@
+---
+- name: Install nginx
+  xbps: pkg=nginx state=present
+  tags: nginx
+
+- name: Configure nginx
+  copy: src=nginx.conf dest=/etc/nginx/nginx.conf owner=root group=root mode=0644
+  notify:
+    - nginx
+  tags: nginx
+
+- name: Create servers.d directory
+  file: path=/etc/nginx/servers.d owner=root group=root mode=0755 state=directory
+
+- name: Check for presence of iptables.d
+  stat: path=/etc/iptables.d
+  register: iptables_d_present
+  tags: iptables
+
+- name: Install nginx rules
+  template: src=nginx.rules.j2 dest=/etc/iptables.d/nginx.rules owner=root group=root mode=0644
+  when: iptables_d_present.stat.exists == True
+  notify:
+    - iptables
+  tags:
+    - nginx
+    - iptables
+
+- name: Enable nginx at startup
+  file: src=/etc/sv/nginx dest=/var/service/nginx state=link
+  tags: nginx

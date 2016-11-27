@@ -10,3 +10,4 @@
     - openntpd
     - xbps
     - sshd
+    - nginx

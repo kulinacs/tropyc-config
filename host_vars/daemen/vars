@@ -36,3 +36,5 @@ sshd_key_auth: "yes"
 sshd_host_keys:
   - ed25519
   - rsa
+
+nginx_https: true
