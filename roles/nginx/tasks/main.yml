@@ -11,6 +11,17 @@
 
 - name: Create servers.d directory
   file: path=/etc/nginx/servers.d owner=root group=root mode=0755 state=directory
+  notify:
+    - nginx
+  tags:
+    - nginx
+
+- name: Create SSL directory
+  file: path=/etc/nginx/ssl owner=root group=root mode=0755 state=directory
+  notify:
+    - nginx
+  tags:
+    - nginx
 
 - name: Check for presence of iptables.d
   stat: path=/etc/iptables.d
@@ -25,6 +36,48 @@
   tags:
     - nginx
     - iptables
+
+- name: Configure nginx servers
+  template: src=server.conf.j2 dest=/etc/nginx/servers.d/{{ item.key }}.conf owner=root group=root mode=0644
+  with_dict: "{{ nginx_servers }}"
+  loop_control:
+    label: "{{ item.key }}"
+  notify:
+    - nginx
+  tags:
+    - nginx
+
+- name: Make locations directories
+  file: path=/etc/nginx/servers.d/{{ item.key }}.d state=directory owner=root group=root mode=0755
+  with_dict: "{{ nginx_servers }}"
+  loop_control:
+    label: "{{ item.key }}"
+  notify:
+    - nginx
+  tags:
+    - nginx
+
+- name: Create SSL site directories
+  file: path=/etc/nginx/ssl/{{ item.key }} state=directory owner=root group=nginx mode=0750
+  with_dict: "{{ nginx_servers }}"
+  loop_control:
+    label: "{{ item.key }}"
+  when: "{{ item.value.https }}"
+  notify:
+    - nginx
+  tags:
+    - nginx
+
+- name: Copy SSL site assets
+  copy: src={{ item.value.ssl_assets }} path=/etc/ssl/{{ item.key }} owner=root group=nginx mode=0750
+  with_dict: "{{ nginx_servers }}"
+  loop_control:
+    label: "{{ item.key }}"
+  when: "{{ item.value.ssl_assets is defined }}"
+  notify:
+    - nginx
+  tags:
+    - nginx
 
 - name: Enable nginx at startup
   file: src=/etc/sv/nginx dest=/var/service/nginx state=link

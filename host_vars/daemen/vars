@@ -37,4 +37,7 @@ sshd_host_keys:
   - ed25519
   - rsa
 
-nginx_https: true
+nginx_servers:
+  kulinacs_com:
+    https: true
+    server_name: "kulinacs.com"

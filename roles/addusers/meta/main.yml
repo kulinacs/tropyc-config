@@ -3,7 +3,7 @@ galaxy_info:
   author: kulinacs
   description: Adds users and their ssh public keys
   license: ISC
-  min_ansible_version: 1.2
+  min_ansible_version: 2.2
   platforms:
     - name: Void Linux
       versions:
