@@ -19,7 +19,7 @@
 
 - name: Install nginx rules
   template: src=nginx.rules.j2 dest=/etc/iptables.d/nginx.rules owner=root group=root mode=0644
-  when: iptables_d_present.stat.exists == True
+  when: iptables_d_present.stat.exists == true
   notify:
     - iptables
   tags:
