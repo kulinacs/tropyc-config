@@ -1,0 +1,12 @@
+---
+- hosts: void-internal
+  become: true
+  roles:
+    - hostname
+    - dhcpcd
+    - addusers
+    - sudoers
+    - iptables
+    - openntpd
+    - xbps
+    - sshd
