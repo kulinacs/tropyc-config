@@ -1,0 +1,5 @@
+table filter {
+    chain OUTPUT {
+        proto tcp daddr {{ xbps_repo | regex_replace('^https://([^/]*)/.*$', '\\1') }} dport {% if "https" in xbps_repo %}443{% else %}80{% endif %} ACCEPT;
+	}
+}

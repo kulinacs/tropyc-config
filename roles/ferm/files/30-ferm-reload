@@ -1,0 +1,2 @@
+#!/bin/sh
+ferm /etc/ferm.conf

@@ -1,0 +1,76 @@
+---
+- name: Install iptables and ferm
+  xbps:
+    pkg:
+      - iptables
+      - ferm
+    state: present
+  tags: ferm
+
+- name: Add dhcpcd ferm hook
+  copy:
+    src: 30-ferm-reload
+    dest: /usr/share/dhcpcd/hooks/30-ferm-reload
+    owner: root
+    group: root
+    mode: 0740
+  notify:
+    - dhcpcd
+  tags:
+    - ferm
+    - dhcpcd
+
+- name: Enable dhcpcd ferm hook
+  file:
+    src: /usr/share/dhcpcd/hooks/30-ferm-reload
+    dest: /usr/libexec/dhcpcd-hooks/30-ferm-reload
+    state: link
+  notify:
+    - dhcpcd
+  tags:
+    - ferm
+    - dhcpcd
+
+- name: Configure ferm
+  copy:
+    src: ferm.conf
+    dest: /etc/ferm.conf
+    owner: root
+    group: root
+    mode: 0644
+  notify:
+    - ferm
+  tags: ferm
+
+- name: Make ferm.d
+  file:
+    path: /etc/ferm.d
+    state: directory
+    owner: root
+    group: root
+    mode: 0755
+  tags: ferm
+
+- name: Configure ferm base rules
+  template:
+    src: 0base.conf.j2
+    dest: /etc/ferm.d/0base.conf
+    owner: root
+    group: root
+    mode: 0644
+  notify:
+    - ferm
+  tags: ferm
+
+- name: Configure xbps ferm rules
+  template:
+    src: xbps.conf.j2
+    dest: /etc/ferm.d/xbps.conf
+    owner: root
+    group: root
+    mode: 0644
+  notify:
+    - ferm
+  tags:
+    - ferm
+    - xbps

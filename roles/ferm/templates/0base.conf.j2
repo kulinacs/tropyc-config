@@ -1,0 +1,28 @@
+table filter {
+    chain INPUT {
+        policy {{ firewall_input_policy }};
+        mod state state INVALID DROP;
+        mod state state (ESTABLISHED RELATED) ACCEPT;
+        interface lo ACCEPT;
+        proto icmp icmp-type echo-request ACCEPT;
+		{% if firewall_ssh_allowed %}
+        proto tcp dport 22 ACCEPT;
+		{% endif %}
+    }
+    chain OUTPUT {
+	    policy {{ firewall_output_policy }};
+        mod state state INVALID DROP;
+        mod state state (ESTABLISHED RELATED) ACCEPT;
+        outerface lo ACCEPT;
+        proto icmp icmp-type echo-request ACCEPT;
+		{% if firewall_dns_allowed %}
+        proto tcp dport 53 ACCEPT;
+		proto udp dport 53 ACCEPT;
+		{% endif %}
+		{% if firewall_ssh_allowed %}
+        proto tcp dport 22 ACCEPT;
+		{% endif %}
+
+	}
+    chain FORWARD policy {{ firewall_forward_policy }};
+}
