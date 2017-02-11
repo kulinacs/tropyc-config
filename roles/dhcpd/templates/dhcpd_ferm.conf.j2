@@ -1,0 +1,10 @@
+table filter {
+    chain INPUT {
+    {% for key, value in network_interfaces.iteritems() %}
+    {% if value.subnets is defined %}
+    proto tcp interface {{ key }} dport 53 ACCEPT;
+    proto udp interface {{ key }} dport (53 67 68) ACCEPT;
+    {% endif %}
+    {% endfor %}
+    }
+}

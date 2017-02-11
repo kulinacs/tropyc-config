@@ -15,19 +15,19 @@
     - dhcpd4
   tags: dhcpd
 
-- name: Check for presence of iptables.d
-  stat: path=/etc/iptables.d
-  register: iptables_d_present
-  tags: iptables
+- name: Check for presence of ferm.d
+  stat: path=/etc/ferm.d
+  register: ferm_d_present
+  tags: ferm
 
 - name: Install dhcpd firewall rules
-  template: src=dhcpd.rules.j2 dest=/etc/iptables.d owner=root group=root mode=0644
-  when: iptables_d_present.stat.exists == True
+  template: src=dhcpd_ferm.conf.j2 dest=/etc/ferm.d/dhcpd.conf owner=root group=root mode=0644
+  when: ferm_d_present.stat.exists == True
   notify:
-    - iptables
+    - ferm
   tags:
     - dhcpd
-    - iptables
+    - ferm
 
 - name: Enable dhcpd4 on startup
   file: src=/etc/sv/dhcpd4 dest=/var/service/dhcpd4 state=link

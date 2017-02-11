@@ -1,0 +1,12 @@
+table filter {
+    chain INPUT {
+	    {% if ntp_server %}
+	    proto udp dport 123 ACCEPT;
+	    {% endif %}
+    }
+	chain OUTPUT {
+	    {% for ntp_serve in ntp_servers %}
+	    proto udp daddr {{ ntp_serve }} dport 123 ACCEPT;
+	    {% endfor %}
+	}
+}

@@ -6,7 +6,7 @@
     - dhcpcd
     - addusers
     - sudoers
-    - iptables
+    - ferm
     - openntpd
     - xbps
     - sshd

@@ -23,19 +23,19 @@
   tags:
     - nginx
 
-- name: Check for presence of iptables.d
-  stat: path=/etc/iptables.d
-  register: iptables_d_present
-  tags: iptables
+- name: Check for presence of ferm.d
+  stat: path=/etc/ferm.d
+  register: ferm_d_present
+  tags: ferm
 
 - name: Install nginx rules
-  template: src=nginx.rules.j2 dest=/etc/iptables.d/nginx.rules owner=root group=root mode=0644
-  when: iptables_d_present.stat.exists == true
+  template: src=nginx_ferm.conf.j2 dest=/etc/ferm.d/nginx.conf owner=root group=root mode=0644
+  when: ferm_d_present.stat.exists == true
   notify:
-    - iptables
+    - ferm
   tags:
     - nginx
-    - iptables
+    - ferm
 
 - name: Configure nginx servers
   template: src=server.conf.j2 dest=/etc/nginx/servers.d/{{ item.key }}.conf owner=root group=root mode=0644

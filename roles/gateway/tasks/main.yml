@@ -6,7 +6,7 @@
   tags: gateway
 
 - name: Install gateway firewall rules
-  template: src=gateway.rules.j2 dest=/etc/iptables.d/gateway.rules owner=root group=root mode=0644
+  template: src=gateway.conf.j2 dest=/etc/ferm.d/gateway.conf owner=root group=root mode=0644
   notify:
-    - iptables
+    - ferm
   tags: gateway

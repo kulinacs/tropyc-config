@@ -39,10 +39,11 @@ users:
 
 sudoers_group: wheel
 
-iptables_input_policy: DROP
-iptables_output_policy: DROP
-iptables_ssh_allowed: true
-iptables_dns_allowed: true
+firewall_input_policy: DROP
+firewall_output_policy: DROP
+firewall_forward_policy: DROP
+firewall_ssh_allowed: true
+firewall_dns_allowed: true
 
 xbps_repo: https://lug.utdallas.edu/mirror/void/current
 xbps_repo_options:

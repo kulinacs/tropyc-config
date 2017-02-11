@@ -1,0 +1,29 @@
+table nat {
+    chain PREROUTING policy ACCEPT;
+	chain INPUT policy ACCEPT;
+	chain OUTPUT policy ACCEPT;
+    chain POSTROUTING {
+	    policy ACCEPT;
+	    {% for key, value in network_interfaces.iteritems() %}
+		{% if value.external %}
+		outerface {{ key }} MASQUERADE;
+		{% endif %}
+		{% endfor %}
+	}
+
+}
+table filter {
+    chain FORWARD {
+	    mod conntrack ctstate (RELATED ESTABLISHED) ACCEPT;
+		{# Map every internal facing interface to an external one #}
+		{% for key, value in network_interfaces.iteritems() %}
+		{% if not value.external %}
+		{% for inner_key, inner_value in network_interfaces.iteritems() %}
+		{% if inner_value.external %}
+		interface {{ key }} outerface {{ inner_key }} ACCEPT;
+		{% endif %}
+		{% endfor %}
+		{% endif %}
+		{% endfor %}
+	}
+}

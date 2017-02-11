@@ -13,19 +13,19 @@
     - ntpd
   tags: openntpd
 
-- name: Check for presence of iptables.d
-  stat: path=/etc/iptables.d
-  register: iptables_d_present
-  tags: iptables
+- name: Check for presence of ferm.d
+  stat: path=/etc/ferm.d
+  register: ferm_d_present
+  tags: ferm
 
 - name: Install openntpd rules
-  template: src=ntpd.rules.j2 dest=/etc/iptables.d/ntpd.rules owner=root group=root mode=0644
-  when: iptables_d_present.stat.exists == true
+  template: src=ntpd_ferm.conf.j2 dest=/etc/ferm.d/ntpd.conf owner=root group=root mode=0644
+  when: ferm_d_present.stat.exists == true
   notify:
-    - iptables
+    - ferm
   tags:
     - openntpd
-    - iptables
+    - ferm
 
 - name: Enable openntpd at startup
   file: src=/etc/sv/ntpd dest=/var/service/ntpd state=link
