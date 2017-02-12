@@ -12,3 +12,4 @@
     - sshd
     - gateway
     - dhcpd
+    - tftp

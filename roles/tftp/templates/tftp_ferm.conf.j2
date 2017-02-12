@@ -1,0 +1,22 @@
+table filter {
+    chain INPUT {
+	    {% for key, value in network_interfaces.iteritems() %}
+	    {% if value.subnets is defined %}
+	    {% for inner_key, inner_value in value.subnets.iteritems() %}
+		{% set net_cidr = inner_value.network + '/' + inner_value.netmask %}
+	    proto udp saddr {{ net_cidr | ipaddr('net') }} dport 69 ACCEPT;
+    	{% endfor %}
+   		{% endif %}
+    	{% endfor %}
+    }
+	chain OUTPUT {
+	    {% for key, value in network_interfaces.iteritems() %}
+	    {% if value.subnets is defined %}
+	    {% for inner_key, inner_value in value.subnets.iteritems() %}
+		{% set net_cidr = inner_value.network + '/' + inner_value.netmask %}
+	    proto udp daddr {{ net_cidr | ipaddr('net') }} sport 69 ACCEPT;
+    	{% endfor %}
+   		{% endif %}
+    	{% endfor %}
+	}
+}

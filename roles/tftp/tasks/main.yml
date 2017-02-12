@@ -1,0 +1,78 @@
+---
+- name: Install tftp-hpa
+  xbps:
+    pkg: tftp-hpa
+    state: present
+  tags: tftp
+
+- name: Ensure modules-load.d exists
+  file:
+    path: /etc/modules-load.d
+    state: directory
+    owner: root
+    group: root
+    mode: 0755
+  tags: tftp
+
+- name: Configure tftp_conntrack module
+  copy:
+    src: tftp.conf
+    dest: /etc/modules-load.d/
+    owner: root
+    group: root
+    mode: 0644
+  notify:
+    - ip_conntrack_tftp
+  tags: tftp
+
+- name: Create TFTP Root
+  file:
+    path: "{{ tftp_root }}"
+    state: directory
+    mode: 0755
+    owner: root
+    group: root
+  tags: tftp
+
+- name: Check for presence of ferm.d
+  stat: path=/etc/ferm.d
+  register: ferm_d_present
+  tags: ferm
+
+- name: Install tftp rules
+  template:
+    src: tftp_ferm.conf.j2
+    dest: /etc/ferm.d/tftp.conf
+    owner: root
+    group: root
+    mode: 0644
+  when: ferm_d_present.stat.exists == true
+  notify:
+    - ferm
+  tags:
+    - tftp
+    - ferm
+
+- name: Create TFTP service directory
+  file:
+    path: /etc/sv/tftpd
+    state: directory
+    owner: root
+    group: root
+    mode: 0755
+  tags: tftp
+
+- name: Install tftp-hpa service file
+  template:
+    src: run
+    dest: /etc/sv/tftpd/
+    owner: root
+    group: root
+    mode: 0755
+  tags: tftp
+
+- name: Enable tftpd
+  file:
+    src: /etc/sv/tftpd
+    dest: /var/service/tftpd
+    state: link
