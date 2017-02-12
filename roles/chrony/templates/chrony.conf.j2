@@ -1,0 +1,18 @@
+# Allow server functionality
+{% if ntp_server %}
+allow
+{% endif %}
+
+# Servers
+{% for ntp_serve in ntp_servers %}
+pool {{ ntp_serve }} iburst
+{% endfor %}
+
+driftfile /var/db/chrony/drift
+keyfile /var/db/chrony/keys
+commandkey 1
+generatecommandkey
+dumponexit
+dumpdir /var/db/chrony
+makestep 10 1
+rtcfile /var/db/chrony/rtc

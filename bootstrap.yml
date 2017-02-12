@@ -7,7 +7,7 @@
     - addusers
     - sudoers
     - ferm
-    - openntpd
+    - chrony
     - xbps
     - sshd
     - gateway

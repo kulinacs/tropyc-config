@@ -1,7 +1,7 @@
-openntpd
-========
+chrony
+======
 
-Configures openntpd
+Configures chrony
 
 Requirements
 ------------
@@ -27,7 +27,7 @@ Example Playbook
     - hosts: servers
       roles:
          - {
-		 role: kulinacs.openntpd,
+		 role: kulinacs.chrony,
 		 ntp_server: true,
 		 ntp_servers:
 		   - pool.ntp.org
