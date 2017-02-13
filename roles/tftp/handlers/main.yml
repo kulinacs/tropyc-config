@@ -3,4 +3,6 @@
   command: sv restart tftpd
 
 - name: ip_conntrack_tftp
-  modprobe: name=ip_conntrack_tftp state=present
+  modprobe:
+    name: ip_conntrack_tftp
+    state: present

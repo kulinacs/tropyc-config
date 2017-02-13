@@ -1,21 +1,35 @@
 ---
 - name: Install chrony
-  xbps: pkg=chrony state=present
+  xbps:
+    pkg: chrony
+    state: present
   tags: chrony
 
 - name: Configure chrony
-  template: src=chrony.conf.j2 dest=/etc/chrony.conf owner=root group=root mode=0644
+  template:
+    src: chrony.conf.j2
+    dest: /etc/chrony.conf
+    owner: root
+    group: root
+    mode: 0644
   notify:
     - ntpd
   tags: openntpd
 
 - name: Check for presence of ferm.d
-  stat: path=/etc/ferm.d
+  stat:
+    path: /etc/ferm.d
   register: ferm_d_present
   tags: ferm
 
 - name: Install chrony rules
-  template: src=ntpd_ferm.conf.j2 dest=/etc/ferm.d/ntpd.conf owner=root group=root mode=0644
+  template:
+    src:
+      ntpd_ferm.conf.j2
+    dest: /etc/ferm.d/ntpd.conf
+    owner: root
+    group: root
+    mode: 0644
   when: ferm_d_present.stat.exists == true
   notify:
     - ferm
@@ -24,5 +38,8 @@
     - ferm
 
 - name: Enable chrony at startup
-  file: src=/etc/sv/ntpd dest=/var/service/ntpd state=link
+  file:
+    src: /etc/sv/ntpd
+    dest: /var/service/ntpd
+    state: link
   tags: openntpd

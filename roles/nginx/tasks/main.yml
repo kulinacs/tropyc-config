@@ -1,35 +1,58 @@
 ---
 - name: Install nginx
-  xbps: pkg=nginx state=present
+  xbps:
+    pkg: nginx
+    state: present
   tags: nginx
 
 - name: Configure nginx
-  copy: src=nginx.conf dest=/etc/nginx/nginx.conf owner=root group=root mode=0644
+  copy:
+    src: nginx.conf
+    dest: /etc/nginx/nginx.conf
+    owner: root
+    group: root
+    mode: 0644
   notify:
     - nginx
   tags: nginx
 
 - name: Create servers.d directory
-  file: path=/etc/nginx/servers.d owner=root group=root mode=0755 state=directory
+  file:
+    path: /etc/nginx/servers.d
+    owner: root
+    group: root
+    mode: 0755
+    state: directory
   notify:
     - nginx
   tags:
     - nginx
 
 - name: Create SSL directory
-  file: path=/etc/nginx/ssl owner=root group=root mode=0755 state=directory
+  file:
+    path: /etc/nginx/ssl
+    owner: root
+    group: root
+    mode: 0755
+    state: directory
   notify:
     - nginx
   tags:
     - nginx
 
 - name: Check for presence of ferm.d
-  stat: path=/etc/ferm.d
+  stat:
+    path: /etc/ferm.d
   register: ferm_d_present
   tags: ferm
 
 - name: Install nginx rules
-  template: src=nginx_ferm.conf.j2 dest=/etc/ferm.d/nginx.conf owner=root group=root mode=0644
+  template:
+    src: nginx_ferm.conf.j2
+    dest: /etc/ferm.d/nginx.conf
+    owner: root
+    group: root
+    mode: 0644
   when: ferm_d_present.stat.exists == true
   notify:
     - ferm
@@ -38,7 +61,12 @@
     - ferm
 
 - name: Configure nginx servers
-  template: src=server.conf.j2 dest=/etc/nginx/servers.d/{{ item.key }}.conf owner=root group=root mode=0644
+  template:
+    src: server.conf.j2
+    dest: /etc/nginx/servers.d/{{ item.key }}.conf
+    owner: root
+    group: root
+    mode: 0644
   with_dict: "{{ nginx_servers }}"
   loop_control:
     label: "{{ item.key }}"
@@ -48,7 +76,12 @@
     - nginx
 
 - name: Make locations directories
-  file: path=/etc/nginx/servers.d/{{ item.key }}.d state=directory owner=root group=root mode=0755
+  file:
+    path: /etc/nginx/servers.d/{{ item.key }}.d
+    state: directory
+    owner: root
+    group: root
+    mode: 0755
   with_dict: "{{ nginx_servers }}"
   loop_control:
     label: "{{ item.key }}"
@@ -58,7 +91,12 @@
     - nginx
 
 - name: Make site directories
-  file: path=/srv/{{ item.key }} state=directory owner=root group=root mode=0755
+  file:
+    path: /srv/{{ item.key }}
+    state: directory
+    owner: root
+    group: root
+    mode: 0755
   with_dict: "{{ nginx_servers }}"
   loop_control:
     label: "{{ item.key }}"
@@ -68,7 +106,12 @@
     - nginx
 
 - name: Create SSL site directories
-  file: path=/etc/nginx/ssl/{{ item.key }} state=directory owner=root group=nginx mode=0750
+  file:
+    path: /etc/nginx/ssl/{{ item.key }}
+    state: directory
+    owner: root
+    group: nginx
+    mode: 0750
   with_dict: "{{ nginx_servers }}"
   loop_control:
     label: "{{ item.key }}"
@@ -79,7 +122,12 @@
     - nginx
 
 - name: Copy SSL site assets
-  copy: src={{ item.value.ssl_assets }} path=/etc/ssl/{{ item.key }} owner=root group=nginx mode=0750
+  copy:
+    src: "{{ item.value.ssl_assets }}"
+    path: /etc/ssl/{{ item.key }}
+    owner: root
+    group: nginx
+    mode: 0750
   with_dict: "{{ nginx_servers }}"
   loop_control:
     label: "{{ item.key }}"
@@ -90,5 +138,8 @@
     - nginx
 
 - name: Enable nginx at startup
-  file: src=/etc/sv/nginx dest=/var/service/nginx state=link
+  file:
+    src: /etc/sv/nginx
+    dest: /var/service/nginx
+    state: link
   tags: nginx

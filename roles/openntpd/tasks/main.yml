@@ -1,25 +1,35 @@
 ---
 - name: Install openntpd
-  xbps: pkg=openntpd state=present
-  tags: openntpd
-
-- name: Set openntpd as default
-  command: xbps-alternatives -s openntpd
+  xbps:
+    pkg: openntpd
+    state: present
   tags: openntpd
 
 - name: Configure openntpd
-  template: src=ntpd.conf.j2 dest=/etc/ntpd.conf owner=root group=root mode=0644 validate="ntpd -nf %s"
+  template:
+    src: ntpd.conf.j2
+    dest: /etc/ntpd.conf
+    owner: root
+    group: root
+    mode: 0644
+    validate: "ntpd -nf %s"
   notify:
     - ntpd
   tags: openntpd
 
 - name: Check for presence of ferm.d
-  stat: path=/etc/ferm.d
+  stat:
+    path: /etc/ferm.d
   register: ferm_d_present
   tags: ferm
 
 - name: Install openntpd rules
-  template: src=ntpd_ferm.conf.j2 dest=/etc/ferm.d/ntpd.conf owner=root group=root mode=0644
+  template:
+    src: ntpd_ferm.conf.j2
+    dest: /etc/ferm.d/ntpd.conf
+    owner: root
+    group: root
+    mode: 0644
   when: ferm_d_present.stat.exists == true
   notify:
     - ferm
@@ -28,5 +38,8 @@
     - ferm
 
 - name: Enable openntpd at startup
-  file: src=/etc/sv/ntpd dest=/var/service/ntpd state=link
+  file:
+    src: /etc/sv/ntpd
+    dest: /var/service/ntpd
+    state: link
   tags: openntpd
