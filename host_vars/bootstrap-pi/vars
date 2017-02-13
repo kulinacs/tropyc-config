@@ -1,6 +1,6 @@
 ---
 hostname: rpi
-domain: .bootstrap
+domain: tropycnet
 
 ntp_server: true
 ntp_servers:
@@ -25,11 +25,11 @@ network_interfaces:
         range_min: 192.168.73.100
         range_max: 192.168.73.199
         routers: 192.168.73.1
-        domain_name: .bootstrap
+        domain_name: tropycnet
         dns_servers: 8.8.8.8
         ntp_servers: 192.168.73.1
         next_server: 192.168.73.1
-        filename: pxelinux.0
+        filename: auto_install
 
 users:
   kulinacs:
@@ -57,3 +57,31 @@ sshd_key_auth: "yes"
 sshd_host_keys:
   - ed25519
   - rsa
+
+nginx_servers:
+  auto_install:
+    https: false
+    server_name: "192.168.73.1"
+
+
+obsd_rd: assets/bootstrap-pi/binary/bsd.rd
+obsd_pxe: assets/bootstrap-pi/binary/pxeboot
+obsd_bootconf: assets/bootstrap-pi/boot.conf
+obsd_webroot: /srv/auto_install
+obsd_hostname: tropyc
+obsd_interface: em0
+obsd_domain: tropycnet
+obsd_password: "{{ vault_obsd_password }}"
+obsd_pubkey: "{{ lookup('file', 'keys/kulinacs/id_personal.pub') }}"
+obsd_x: "no"
+obsd_com0: "yes"
+obsd_baud: 115200
+obsd_timezone: US/Central
+obsd_server: mirror.esc7.net
+obsd_server_path: pub/OpenBSD/snapshots/amd64/
+obsd_sets:
+  - "-all"
+  - bsd
+  - bsd.rd
+  - bsd.mp
+  - base60.tgz

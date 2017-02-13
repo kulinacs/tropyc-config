@@ -57,6 +57,16 @@
   tags:
     - nginx
 
+- name: Make site directories
+  file: path=/srv/{{ item.key }} state=directory owner=root group=root mode=0755
+  with_dict: "{{ nginx_servers }}"
+  loop_control:
+    label: "{{ item.key }}"
+  notify:
+    - nginx
+  tags:
+    - nginx
+
 - name: Create SSL site directories
   file: path=/etc/nginx/ssl/{{ item.key }} state=directory owner=root group=nginx mode=0750
   with_dict: "{{ nginx_servers }}"

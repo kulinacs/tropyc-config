@@ -1,0 +1,54 @@
+---
+- name: Copy over OpenBSD kernel
+  copy:
+    src: "{{ obsd_rd }}"
+    dest: "{{ tftp_root }}/bsd"
+    owner: root
+    group: root
+    mode: 0644
+  tags: obsd_autoinstall
+
+- name: Copy over OpenBSD pxeboot
+  copy:
+    src: "{{ obsd_pxe }}"
+    dest: "{{ tftp_root }}/pxeboot"
+    owner: root
+    group: root
+    mode: 0644
+  tags: obsd_autoinstall
+
+- name: Enable auto install
+  file:
+    src: "./pxeboot"
+    dest: "{{ tftp_root }}/auto_install"
+    state: link
+  tags: obsd_autoinstall
+
+- name: Copy over auto install conf
+  template:
+    src: install.conf.j2
+    dest: "{{ obsd_webroot }}/install.conf"
+    owner: root
+    group: root
+    mode: 0644
+  tags: obsd_autoinstall
+
+- name: Make boot.conf directory
+  file:
+    path: "{{ tftp_root }}/etc"
+    state: directory
+    owner: root
+    group: root
+    mode: 0755
+  tags: obsd_autoinstall
+  when: obsd_bootconf is defined
+
+- name: Copy over boot.conf
+  template:
+    src: "{{ obsd_bootconf }}"
+    dest: "{{ tftp_root }}/etc/boot.conf"
+    owner: root
+    group: root
+    mode: 0644
+  tags: obsd_autoinstall
+  when: obsd_bootconf is defined

@@ -1,0 +1,23 @@
+System hostname = {{ obsd_hostname }}
+Network interfaces = {{ obsd_interface }}
+IPv4 address for {{ obsd_interface }} = dhcp
+DNS domain name = {{ obsd_domain }}
+Password for root account = {{ obsd_password }}
+{% if obsd_pubkey is defined %}
+Public ssh key for root account = {{ obsd_pubkey }}
+{% endif %}
+Do you expect to run the X Window System = {{ obsd_x }}
+Change the default console to com0 = {{ obsd_com0 }}
+Which speed should com0 use = {{ obsd_baud }}
+What timezone are you in = {{ obsd_timezone }}
+Location of sets = http
+HTTP proxy URL = none
+HTTP Server = {{ obsd_server }}
+Server directory = {{ obsd_server_path }}
+Set name(s) = {{ obsd_sets | join(" ") }}
+Location of sets = done
+{% if obsd_pubkey is defined %}
+Allow root ssh login = prohibit-password
+{% else %}
+Allow root ssh login = yes
+{% endif %}

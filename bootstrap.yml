@@ -13,3 +13,5 @@
     - gateway
     - dhcpd
     - tftp
+    - nginx
+    - obsd-autoinstall
