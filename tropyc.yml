@@ -1,0 +1,8 @@
+---
+- hosts: tropyc
+  become: true
+  become_method: doas
+  roles:
+    - addusers
+    - sshd
+    - doas

@@ -1,3 +1,6 @@
 ---
 - name: sshd
   command: sv restart sshd
+
+- name: obsd_sshd
+  command: /etc/rc.d/sshd restart

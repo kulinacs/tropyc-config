@@ -8,6 +8,9 @@ galaxy_info:
     - name: Void Linux
       versions:
         - any
+    - name: OpenBSD
+      versions:
+        - 6.0
   galaxy_tags:
     - addusers
 dependencies: []

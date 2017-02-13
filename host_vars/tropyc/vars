@@ -1,0 +1,15 @@
+---
+users:
+  kulinacs:
+    groups: wheel
+    password: "{{ vault_users.kulinacs.password }}"
+    pub_key: "{{ lookup('file', 'keys/kulinacs/id_personal.pub') }}"
+  root:
+    password: "{{ vault_users.root.password }}"
+
+sshd_root_login: "no"
+sshd_pass_auth: "no"
+sshd_key_auth: "yes"
+sshd_host_keys:
+  - ed25519
+  - rsa

@@ -1,0 +1,10 @@
+---
+- name: Configure doas.conf
+  template:
+    src: doas.conf.j2
+    dest: /etc/doas.conf
+    owner: root
+    group: wheel
+    mode: 0640
+    validate: 'doas -C %s'
+  tags: doas

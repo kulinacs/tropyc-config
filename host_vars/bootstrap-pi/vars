@@ -85,3 +85,4 @@ obsd_sets:
   - bsd.rd
   - bsd.mp
   - base60.tgz
+  - man60.tgz
