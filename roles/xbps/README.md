@@ -16,9 +16,10 @@ None
 
 Extra Variables
 ---------------
-'''---
+```
+---
 xbps_repo: the primary xbps repository  
-'''
+```
 
 Dependencies
 ------------

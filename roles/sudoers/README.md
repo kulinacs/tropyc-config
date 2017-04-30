@@ -16,9 +16,10 @@ None
 
 Extra Variables
 ---------------
-'''---
+```
+---
 sudoers_group: the group that can use sudo
-'''
+```
 
 Dependencies
 ------------

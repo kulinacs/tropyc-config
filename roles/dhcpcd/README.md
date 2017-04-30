@@ -16,7 +16,8 @@ None
 
 Extra Variables
 ---------------
-'''---
+```
+---
 network_interfaces: a hash of hashes describing each network interface
   <interface_name>:
     static: True/False
@@ -24,7 +25,7 @@ network_interfaces: a hash of hashes describing each network interface
     routers: Gateway IP
     domain_name_servers:
       - List of DNS Servers
-'''
+```
 
 Dependencies
 ------------

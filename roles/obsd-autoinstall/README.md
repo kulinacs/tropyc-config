@@ -16,7 +16,8 @@ None
 
 Extra Variables
 ---------------
-'''---
+```
+---
 obsd_rd: where the obsd.rd file is located (locally)
 obsd_pxe: where the pxe file is located (locally)
 obsd_bootconf: where the boot configuration is located (locally)
@@ -34,7 +35,7 @@ obsd_server: repository url
 obsd_server_path: path to repository
 obsd_sets:
   - list of packages to set installer
-'''
+```
 
 Dependencies
 ------------

@@ -16,10 +16,11 @@ None
 
 Extra Variables
 ---------------
-'''---
+```
+---
 hostname: the desired hostname of the machine
 fqdn: (optional) the desired fqdn of the machine
-'''
+```
 
 Dependencies
 ------------

@@ -16,10 +16,11 @@ None
 
 Extra Variables
 ---------------
-'''---
+```
+---
 ntp_server: if openntpd should also function as a server
 ntp_servers: a list of ntp servers
-'''
+```
 
 Dependencies
 ------------

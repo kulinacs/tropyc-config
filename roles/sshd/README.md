@@ -19,7 +19,8 @@ sshd_x11_forwarding: 'no'
 
 Extra Variables
 ---------------
-'''---
+```
+---
 sshd_root_login: whether root login is allowed over ssh
 sshd_pass_auth: whether passwords are allowed for authentication
 sshd_key_auth: whether ssh keys are allowed for authentication
@@ -28,7 +29,7 @@ sshd_host_keys:
   - rsa
   - ecdsa
   - dsa
-'''
+```
 
 Dependencies
 ------------

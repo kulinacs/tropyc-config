@@ -16,11 +16,12 @@ None
 
 Extra Variables
 ---------------
-'''---
+```
+---
 network_interfaces:
   <interface_name>:
     external: true/false
-'''
+```
 
 Dependencies
 ------------

@@ -16,7 +16,8 @@ None
 
 Extra Variables
 ---------------
-'''---
+```
+---
 network_interfaces: a hash of hashes describing each network interface
   <interface_name>:
     subnets:
@@ -29,7 +30,7 @@ network_interfaces: a hash of hashes describing each network interface
         domain_name: domain name (optional)
         dns_servers: dns server (optional)
         ntp_servers: ntp server (optional)
-'''
+```
 
 Dependencies
 ------------

@@ -16,7 +16,8 @@ None
 
 Extra Variables
 ---------------
-'''---
+```
+---
 users: a hash of hashes describing each user
   <username>:
     password: (Optional) crypted password
@@ -24,7 +25,7 @@ users: a hash of hashes describing each user
     groups: (Optional) comma separated list of additional groups
     append: (Optional) true/false, if the additional groups should be appended
     pub_key: (Optional) public key to be added\n"
-'''
+```
 
 Dependencies
 ------------

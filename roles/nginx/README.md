@@ -16,12 +16,13 @@ None
 
 Extra Variables
 ---------------
-'''---
+```
+---
 nginx_servers:
   <server_name>:
     https: True/False
     server_name: servername
-'''
+```
 
 Dependencies
 ------------
