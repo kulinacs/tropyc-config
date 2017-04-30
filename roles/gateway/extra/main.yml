@@ -1,0 +1,3 @@
+---
+author_email: nicklaus@kulinacs.com
+variables: "network_interfaces:\n  <interface_name>:\n    external: true/false\n"

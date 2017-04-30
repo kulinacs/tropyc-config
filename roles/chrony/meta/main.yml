@@ -1,13 +1,15 @@
 ---
-galaxy_info:
-  author: kulinacs
-  description: Configures openntpd
-  license: ISC
-  min_ansible_version: 1.2
-  platforms:
-    - name: Void Linux
-      versions:
-        - any
-  galaxy_tags:
-    - openntpd
 dependencies: []
+galaxy_info:
+    author: kulinacs
+    company: APE Labs
+    description: Configures chrony
+    galaxy_tags:
+      - chrony
+      - Void Linux
+    license: ISC
+    min_ansible_version: 1.2
+    platforms:
+      - name: Void Linux
+        versions:
+          - any

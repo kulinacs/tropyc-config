@@ -1,15 +1,16 @@
 ---
-galaxy_info:
-  author: kulinacs
-  description: Configures iptables with ferm
-  license: MIT
-  min_ansible_version: 2.0
-  platforms:
-    - name: Void Linux
-      versions:
-        - any
-  galaxy_tags:
-    - iptables
-    - ferm
 dependencies:
   - dhcpcd
+galaxy_info:
+    author: kulinacs
+    company: APE Labs
+    description: Configures iptables with ferm
+    galaxy_tags:
+      - iptables
+      - ferm
+    license: ISC
+    min_ansible_version: 2.0
+    platforms:
+      - name: Void Linux
+        versions:
+          - any

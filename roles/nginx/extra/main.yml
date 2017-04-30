@@ -1,0 +1,4 @@
+---
+author_email: nicklaus@kulinacs.com
+variables: "nginx_servers:\n  <server_name>:\n    https: True/False\n    server_name:\
+    \ servername\n"

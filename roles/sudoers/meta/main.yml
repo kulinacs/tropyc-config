@@ -1,13 +1,14 @@
 ---
-galaxy_info:
-  author: kulinacs
-  description: Configures the group that can use sudo
-  license: ISC
-  min_ansible_version: 1.2
-  platforms:
-    - name: Void Linux
-      versions:
-        - any
-  galaxy_tags:
-    - sudoers
 dependencies: []
+galaxy_info:
+    author: kulinacs
+    company: APE Labs
+    description: Configures the group that can use sudo
+    galaxy_tags:
+      - sudoers
+    license: ISC
+    min_ansible_version: 1.2
+    platforms:
+      - name: Void Linux
+        versions:
+          - any

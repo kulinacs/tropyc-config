@@ -1,0 +1,4 @@
+---
+author_email: nicklaus@kulinacs.com
+variables: "ntp_server: if openntpd should also function as a server\nntp_servers:\
+    \ a list of ntp servers\n"

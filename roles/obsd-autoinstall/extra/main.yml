@@ -1,0 +1,11 @@
+---
+author_email: nicklaus@kulinacs.com
+variables: "obsd_rd: where the obsd.rd file is located (locally)\nobsd_pxe: where\
+    \ the pxe file is located (locally)\nobsd_bootconf: where the boot configuration\
+    \ is located (locally)\nobsd_webroot: where to serve autoinstall files from\n\
+    obsd_hostname: hostname\nobsd_interface: primary interface\nobsd_domain: domain\
+    \ name\nobsd_password: the password for the root account\nobsd_pubkey: the key\
+    \ for the root account\nobsd_x: <string> if X is going to be used\nobsd_com0:\
+    \ <string> if com0 is default\nobsd_baud: serial baudrate\nobsd_timezone: timezone\n\
+    obsd_server: repository url\nobsd_server_path: path to repository\nobsd_sets:\n\
+    \  - list of packages to set installer\n"

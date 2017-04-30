@@ -1,0 +1,6 @@
+---
+author_email: nicklaus@kulinacs.com
+variables: "sshd_root_login: whether root login is allowed over ssh\nsshd_pass_auth:\
+    \ whether passwords are allowed for authentication\nsshd_key_auth: whether ssh\
+    \ keys are allowed for authentication\nsshd_host_keys:\n  - ed25519\n  - rsa\n\
+    \  - ecdsa\n  - dsa\n"

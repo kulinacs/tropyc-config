@@ -1,35 +1,31 @@
 doas
 ====
-
-Configures doas. Currently allows wheel without password because of the Ansible
-bug.
+Configures doas
 
 Requirements
 ------------
+No Requirements
 
-No requirements
+Role Variables
+--------------
+None
 
+Role Defaults
+-------------
+None
+
+Extra Variables
+---------------
+None
 
 Dependencies
 ------------
-
-No dependencies
-
-Example Playbook
-----------------
-
-    - hosts: servers
-      roles:
-         - { 
-		 role: kulinacs.doas,
-		 }
+No Dependencies
 
 License
 -------
-
 ISC
 
 Author Information
 ------------------
-
-Nicklaus McClendon <nicklaus@kulinacs.com>
+kulinacs <nicklaus@kulinacs.com>

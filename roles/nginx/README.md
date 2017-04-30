@@ -1,41 +1,36 @@
 nginx
 =====
-
-Configures nginx, and sets up servers to be read from servers.d/*.conf
+Configures nginx
 
 Requirements
 ------------
-
-No requirements
+No Requirements
 
 Role Variables
 --------------
+None
 
-Required:
+Role Defaults
+-------------
+None
 
-	nginx_https: whether https traffic should be allowed through the firewall
+Extra Variables
+---------------
+'''---
+nginx_servers:
+  <server_name>:
+    https: True/False
+    server_name: servername
+'''
 
 Dependencies
 ------------
-
-No dependencies
-
-Example Playbook
-----------------
-
-    - hosts: servers
-      roles:
-         - { 
-		 role: kulinacs.nginx.
-		 nginx_https: true
-		 }
+No Dependencies
 
 License
 -------
-
 ISC
 
 Author Information
 ------------------
-
-Nicklaus McClendon <nicklaus@kulinacs.com>
+kulinacs <nicklaus@kulinacs.com>

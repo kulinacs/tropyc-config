@@ -1,47 +1,35 @@
 gateway
 =======
-
-Configures traffic to be forwarded between "internal" and "external" interfaces
+Configures traffic forwarding
 
 Requirements
 ------------
-
-No requirements
+No Requirements
 
 Role Variables
 --------------
+None
 
-Required:
+Role Defaults
+-------------
+None
 
-	network_interfaces:
-	  <interface_name>:
-	    external: true/false
-	
+Extra Variables
+---------------
+'''---
+network_interfaces:
+  <interface_name>:
+    external: true/false
+'''
+
 Dependencies
 ------------
-
-iptables
-
-Example Playbook
-----------------
-
-    - hosts: servers
-      roles:
-         - { 
-		 role: kulinacs.gateway,
-		 network_interfaces:
-		   eth0:
-             external: true
-	       eth1:
-             external: false
-		 }
+* ferm
 
 License
 -------
-
 ISC
 
 Author Information
 ------------------
-
-Nicklaus McClendon <nicklaus@kulinacs.com>
+kulinacs <nicklaus@kulinacs.com>

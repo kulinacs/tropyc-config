@@ -1,14 +1,15 @@
 ---
-galaxy_info:
-  author: kulinacs
-  description: Configures traffic forwarding
-  license: ISC
-  min_ansible_version: 1.2
-  platforms:
-    - name: Void Linux
-      versions:
-        - any
-  galaxy_tags:
-    - gateway
 dependencies:
   - ferm
+galaxy_info:
+    author: kulinacs
+    company: APE Labs
+    description: Configures traffic forwarding
+    galaxy_tags:
+      - gateway
+    license: ISC
+    min_ansible_version: 1.2
+    platforms:
+      - name: Void Linux
+        versions:
+          - any

@@ -1,0 +1,62 @@
+{{ name }}
+{% for character in name %}={% endfor %}
+
+{{ meta.galaxy_info.description }}
+
+Requirements
+------------
+{% if extra.requirements is defined and extra.requirements != None %}
+{% for requirement in extra.requirements %}
+* {{ requirement }}
+{% endfor %}
+{% else %}
+No Requirements
+{% endif %}
+
+Role Variables
+--------------
+{% if vars != '{}' %}
+'''---
+{{ vars }}
+'''
+{% else %}
+None
+{% endif %}
+
+Role Defaults
+-------------
+{% if defaults != '{}' %}
+'''---
+{{ defaults }}
+'''
+{% else %}
+None
+{% endif %}
+
+Extra Variables
+---------------
+{% if extra.variables is defined %}
+'''---
+{{ extra.variables }}'''
+{% else %}
+None
+{% endif %}
+
+Dependencies
+------------
+{% if meta.dependencies is defined and meta.dependencies %}
+{% for dependency in meta.dependencies %}
+* {{ dependency }}
+{% endfor %}
+{% else %}
+No Dependencies
+{% endif %}
+
+License
+-------
+{{ meta.galaxy_info.license }}
+
+Author Information
+------------------
+{{ meta.galaxy_info.author }} {% if extra.author_email is defined %}<{{ extra.author_email }}>{% endif %}
+

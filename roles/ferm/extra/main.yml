@@ -1,0 +1,6 @@
+---
+author_email: nicklaus@kulinacs.com
+variables: "firewall_dns_allowed: if outbound DNS traffic is allowed\nfirewall_ssh_allowed:\
+    \ if outbound and inbound SSH traffic is allowed\nfirewall_input_policy: default\
+    \ input policy\nfirewall_output_policy: default output policy\nfirewall_forward_policy:\
+    \ default forward policy\n"

@@ -1,13 +1,14 @@
 ---
-galaxy_info:
-  author: kulinacs
-  description: Configures doas
-  license: ISC
-  min_ansible_version: 1.2
-  platforms:
-    - name: OpenBSD
-      versions:
-        - 6.0
-  galaxy_tags:
-    - doas
 dependencies: []
+galaxy_info:
+    author: kulinacs
+    company: APE Labs
+    description: Configures doas
+    galaxy_tags:
+      - doas
+    license: ISC
+    min_ansible_version: 1.2
+    platforms:
+      - name: OpenBSD
+        versions:
+          - 6.0

@@ -1,0 +1,8 @@
+---
+author_email: nicklaus@kulinacs.com
+variables: "network_interfaces: a hash of hashes describing each network interface\n\
+    \  <interface_name>:\n    subnets:\n      <subnet-name>:\n        network: dhcp\
+    \ network\n        netmask: Netmask\n        range_min: dhcp pool lower\n    \
+    \    range_max: dhcp pool upper\n        routers: router (optional)\n        domain_name:\
+    \ domain name (optional)\n        dns_servers: dns server (optional)\n       \
+    \ ntp_servers: ntp server (optional)\n"

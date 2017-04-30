@@ -1,0 +1,5 @@
+---
+author_email: nicklaus@kulinacs.com
+variables: "network_interfaces: a hash of hashes describing each network interface\n\
+    \  <interface_name>:\n    static: True/False\n    ip_address: Interface IP\n \
+    \   routers: Gateway IP\n    domain_name_servers:\n      - List of DNS Servers\n"

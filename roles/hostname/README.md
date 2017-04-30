@@ -1,46 +1,34 @@
 hostname
-=========
-
-Configures the hostname
+========
+Sets the hostname
 
 Requirements
 ------------
-
-No requirements
+No Requirements
 
 Role Variables
 --------------
+None
 
-Required:
+Role Defaults
+-------------
+None
 
-	hostname: the desired hostname of the machine
-
-Optional:
-	
-	fqdn: the desired fqdn of the machine
+Extra Variables
+---------------
+'''---
+hostname: the desired hostname of the machine
+fqdn: (optional) the desired fqdn of the machine
+'''
 
 Dependencies
 ------------
-
-No dependencies
-
-Example Playbook
-----------------
-
-    - hosts: servers
-      roles:
-         - { 
-		 role: kulinacs.hostname,
-		 hostname: localhost,
-		 fqdn: localhost.localdomain
-		 }
+No Dependencies
 
 License
 -------
-
 ISC
 
 Author Information
 ------------------
-
-Nicklaus McClendon <nicklaus@kulinacs.com>
+kulinacs <nicklaus@kulinacs.com>

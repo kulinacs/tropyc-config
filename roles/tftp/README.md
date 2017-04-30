@@ -1,40 +1,33 @@
 tftp
 ====
-
 Configures tftp
 
 Requirements
 ------------
-
-No requirements
+No Requirements
 
 Role Variables
 --------------
+None
 
-Optional:
+Role Defaults
+-------------
+'''---
+tftp_root: /srv/tftp
+'''
 
-	tftp_root: where tftp files are served from (defaults to /srv/tftp)
+Extra Variables
+---------------
+None
 
 Dependencies
 ------------
-
-No dependencies
-
-Example Playbook
-----------------
-
-    - hosts: servers
-      roles:
-         - {
-		 role: kulinacs.tftp
-		 }
+No Dependencies
 
 License
 -------
-
 ISC
 
 Author Information
 ------------------
-
-Nicklaus McClendon <nicklaus@kulinacs.com>
+kulinacs <nicklaus@kulinacs.com>

@@ -1,0 +1,7 @@
+---
+author_email: nicklaus@kulinacs.com
+variables: "users: a hash of hashes describing each user\n  <username>:\n    password:\
+    \ (Optional) crypted password\n    group: (Optional) primary group\n    groups:\
+    \ (Optional) comma separated list of additional groups\n    append: (Optional)\
+    \ true/false, if the additional groups should be appended\n    pub_key: (Optional)\
+    \ public key to be added\\n\"\n"

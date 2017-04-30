@@ -1,13 +1,14 @@
 ---
-galaxy_info:
-  author: kulinacs
-  description: Configures nginx
-  license: ISC
-  min_ansible_version: 2.2
-  platforms:
-    - name: Void Linux
-      versions:
-        - any
-  galaxy_tags:
-    - nginx
 dependencies: []
+galaxy_info:
+    author: kulinacs
+    company: APE Labs
+    description: Configures nginx
+    galaxy_tags:
+      - nginx
+    license: ISC
+    min_ansible_version: 2.2
+    platforms:
+      - name: Void Linux
+        versions:
+          - any

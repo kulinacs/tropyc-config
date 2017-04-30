@@ -1,41 +1,33 @@
 sudoers
 =======
-
-Configures the sudoers group
+Configures the group that can use sudo
 
 Requirements
 ------------
-
-No requirements
+No Requirements
 
 Role Variables
 --------------
+None
 
-Required:
+Role Defaults
+-------------
+None
 
-	sudoers_group: the group that can use sudo
-	
+Extra Variables
+---------------
+'''---
+sudoers_group: the group that can use sudo
+'''
+
 Dependencies
 ------------
-
-No dependencies
-
-Example Playbook
-----------------
-
-    - hosts: servers
-      roles:
-         - { 
-		 role: kulinacs.sudoers,
-		 sudoers_group: wheel
-		 }
+No Dependencies
 
 License
 -------
-
 ISC
 
 Author Information
 ------------------
-
-Nicklaus McClendon <nicklaus@kulinacs.com>
+kulinacs <nicklaus@kulinacs.com>
